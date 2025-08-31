@@ -1,1 +1,8 @@
-
+Traceback (most recent call last):
+  File "c:\Users\nycu_dev1\Desktop\YEN-HSU code\GGWP\main.py", line 170, in <module>
+    main(args, split_info,
+  File "c:\Users\nycu_dev1\Desktop\YEN-HSU code\GGWP\main.py", line 134, in main
+    records_df, pred_paras, open_prob, cor_mat = backtest_env.trade()
+  File "c:\Users\nycu_dev1\Desktop\YEN-HSU code\GGWP\backtest.py", line 233, in trade
+    utils.timer(i, self.data_size, start, grain=1000)
+TypeError: timer() got an unexpected keyword argument 'grain'
