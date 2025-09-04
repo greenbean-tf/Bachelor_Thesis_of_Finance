@@ -1,0 +1,3 @@
+  # 額外輸出 CSV（前 50 筆，含 GT）
+  PT_model.predict(test_data, test_labels)
+  print("✅ 成功輸出 inference_results.csv (前 50 筆樣本)")
