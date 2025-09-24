@@ -30,15 +30,18 @@
 
             # forward：取得 (revert_prob, paras, cor_mat)
             revert_prob, paras, cor_mat = self.forward(data)
+            
+            # ===== 回歸均值機率（softmax 後取第 1 類） =====  # add
+            prob = torch.softmax(revert_prob, dim=1)[:, 1]  # (batch,)
+            mr_prob_np = prob.cpu().detach().numpy()
+
+            for elem in mr_prob_np:
+                result_revert_prob_np.append(elem)  # 現在存的是機率 (0~1)
 
             # ====== 蒐集全部 batch 的輸出（原始行為） ======
             paras_np = paras.cpu().detach().numpy()
             for elem in paras_np:
                 result_paras_np.append(elem)
-
-            revert_prob_np = revert_prob.cpu().detach().numpy()
-            for elem in revert_prob_np:
-                result_revert_prob_np.append(elem)
 
             if cor_mat is not None:
                 cor_mat_np = cor_mat.cpu().detach().numpy()
@@ -80,10 +83,11 @@
                         "mu_top": float(mu_top[i]),
                         "beta_top": float(beta_top[i]),
                         "mu_close": float(mu_close[i]),
-                        "beta_close": float(beta_close[i]),
+                        "sigma_close": float(beta_close[i]),
                         "GT_Norm_Rtop": float(gt_rtop[i]) if not np.isnan(gt_rtop[i]) else np.nan,
                         "GT_Norm_Top": float(gt_top[i]) if not np.isnan(gt_top[i]) else np.nan,
                         "GT_Norm_Close": float(gt_close[i]) if not np.isnan(gt_close[i]) else np.nan,
+                        "MR_Prob": float(mr_prob_np[i]),   # add
                     }
                     records.append(record)
                     saved += 1
@@ -102,4 +106,5 @@
             np.array(result_paras_np),
             np.array(result_cor_mat_np),
         )
+
 
