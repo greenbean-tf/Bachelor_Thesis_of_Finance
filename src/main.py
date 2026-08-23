@@ -76,9 +76,7 @@ def main(args, split_info, mode="train", model_path=None, main_time=None):
         train = val = preprocess_data = None
         print(f"  test DataFrame 載入完成，共 {len(test):,} 筆")
     else:
-        # 改成直接讀取preprocess.py的輸出（不再經過cleaned_data_v{n}的清洗版本邏輯）
-        '''
-        # ── cleaned_data_v{n}版本（保留供之後切換回來用）──────────────
+        # 改成直接讀取清洗好的乾淨資料
         print("載入清洗後的乾淨資料...")
         if hyperparameters.data_version_override is not None:
             n = int(hyperparameters.data_version_override)
@@ -90,9 +88,6 @@ def main(args, split_info, mode="train", model_path=None, main_time=None):
         latest_path = f"{'/content/GGWP_US_LLTL/data_cleaning/cleaned_data_v'}{n}.pickle"
         print(f"讀取版本：v{n}，路徑：{latest_path}")
         preprocess_data = pd.read_pickle(latest_path)
-        '''
-        print(f"載入preprocess資料：{preprocess_data_path}")
-        preprocess_data = pd.read_pickle(preprocess_data_path)
 
         preprocess_data.reset_index(drop=True, inplace=True)
         preprocess_data['Data_ID'] = preprocess_data.index
