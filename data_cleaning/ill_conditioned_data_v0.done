@@ -1,0 +1,3 @@
+Training completed at epoch 75
+Best val loss: 5.724375
+Best model: /content/GGWP_US_LLTL/data/Train_ckpt/2026-07-11 15-44-20/BestEpoch=24_ValLoss=5.7244.pth

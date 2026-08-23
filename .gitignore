@@ -1,0 +1,28 @@
+# Thesis PDFs (not part of the codebase)
+*.pdf
+
+# Python bytecode cache
+__pycache__/
+*.pyc
+
+# Claude Code local settings (machine-specific, not shared)
+.claude/
+
+# Non-project artifacts left in src/ (VS Code CLI tool, large ad-hoc CSVs,
+# legacy 2015 Taiwan-market data that predates this US project)
+src/code
+src/vscode_cli.tar.gz
+src/output/
+src/formation_table/
+src/stock_data/
+
+# data_cleaning/ — exclude the huge training-data pickles; keep the code and
+# the ill-conditioned-sample CSV logs (tracked via Git LFS, see .gitattributes)
+data_cleaning/cleaned_data_v0.pickle
+data_cleaning/cleaned_data_v1.pickle
+
+# data/ — keep the folder structure (via .gitkeep placeholders) but exclude
+# the actual data files inside every subfolder
+data/**
+!data/**/
+!**/.gitkeep
